@@ -1,4 +1,5 @@
 import 'package:catalog_app/models/products.dart';
+import 'package:catalog_app/services/product_list_service.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -20,12 +21,12 @@ class _HomepageState extends State<Homepage> {
   }
 
   getData() async {
-    // products = await ProductListService().getProducts();
-    // if (products != null) {
-    //   setState(() {
-    //     isLoaded = true;
-    //   });
-    // }
+    products = await ProductListService().getProducts();
+    if (products != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
   }
 
   @override
@@ -33,6 +34,7 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Homepage')),
       body: ListView.builder(
+        itemCount: products?.length,
         itemBuilder: (context, index) {
           return Container();
         },
