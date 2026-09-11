@@ -35,13 +35,61 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(title: const Text('Homepage')),
       body: Visibility(
         visible: isLoaded,
+        replacement: const Center(child: CircularProgressIndicator()),
         child: ListView.builder(
           itemCount: products?.length,
           itemBuilder: (context, index) {
-            return Container();
+            return Container(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: NetworkImage(products![index].images[0]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          products![index].title,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          products![index].thumbnail,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 10),
+                        ),
+                        Text(
+                          products![index].price.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
           },
         ),
-        replacement: const CircularProgressIndicator(),
       ),
     );
   }
