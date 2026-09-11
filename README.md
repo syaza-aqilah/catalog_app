@@ -8,6 +8,6 @@
 
 ## TO DO LIST
 
--[X] Product List Screen 
--[X] Title, Thumbnail, Price
--[ ] Pagination 
+- [X] Product List Screen 
+- [X] Title, Thumbnail, Price
+- [ ] Pagination 
