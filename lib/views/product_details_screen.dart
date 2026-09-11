@@ -52,6 +52,18 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: NetworkImage(products!.images[0]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   Text(
                     products!.title,
                     style: const TextStyle(
