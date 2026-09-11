@@ -10,6 +10,7 @@
 
 ## Stack
 
+Open using Visual Studio Code.
 Built the catalog app using Flutter Framework. 
 
 ## TO DO LIST
