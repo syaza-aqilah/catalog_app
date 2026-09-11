@@ -108,6 +108,13 @@ class _HomepageState extends State<Homepage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            Text(
+                              'Rating: ${products![index].rating}',
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),)
                           ],
                         ),
                       ),

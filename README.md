@@ -6,7 +6,7 @@
 2. Run at command prompt flutter --version and flutter doctor to make sure no issues found.
 3. Create a emulator from Android Studio.
 4. Connect the emulator.
-5. At top bar clicked Run > Start Debugging or Open terminal type flutter run.
+5. Open terminal type flutter run and At top bar clicked Run > Start Debugging for easier reloading. 
 
 ## Stack
 
