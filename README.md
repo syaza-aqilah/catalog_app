@@ -16,13 +16,13 @@ Built the catalog app using Flutter Framework.
 
 - [X] Product List Screen 
    - [X] Title, Thumbnail, Price
-- [ ] Pagination 
+- [ ] Pagination - make attempts to create it in views/home-page.dart line 56
 - [ ] Product Details Screen - half-Finish, was able to create the page but just loading no display
 - [ ] Basic Search Box
 - [ ] States 
    - [x] Loading
    - [ ] Error
-   - [ ] Succes
+   - [x] Succes
    - [ ] Retry 
 - [ ] UI/UX
 - [ ] Pull to refresh

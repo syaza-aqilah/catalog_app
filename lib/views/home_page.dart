@@ -11,7 +11,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<Product>? products;
+  List<Product>? products = [];
   var isLoaded = false;
   int skip = 0;
   int limit = 10;
@@ -101,7 +101,7 @@ class _HomepageState extends State<Homepage> {
                               style: TextStyle(fontSize: 10),
                             ),
                             Text(
-                              products![index].price.toString(),
+                              'Price: \$${products![index].price}',
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 10,
