@@ -1,17 +1,20 @@
 import 'package:catalog_app/models/products.dart';
-import 'package:catalog_app/services/product_list_service.dart';
+import 'package:catalog_app/services/product_details_service.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key});
+  final int id;
+
+  const ProductDetailScreen({super.key, required this.id});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailScreen> {
-  List<Product>? products;
+  Product? products;
   var isLoaded = false;
+  String errorMessage = '';
 
   @override
   void initState() {
@@ -21,10 +24,16 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
   }
 
   getData() async {
-    products = await ProductListService().getProducts();
-    if (products != null) {
+    try {
+      var data = await ProductDetailService().getProduct(products!.id);
       setState(() {
+        products = data; // Store the single product
         isLoaded = true;
+      });
+    } catch (e) {
+      setState(() {
+        errorMessage = e.toString();
+        isLoaded = false;
       });
     }
   }
@@ -37,7 +46,6 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
         visible: isLoaded,
         replacement: const Center(child: CircularProgressIndicator()),
         child: ListView.builder(
-          itemCount: products?.length ?? 0,
           itemBuilder: (context, index) {
             return Container(
               padding: const EdgeInsets.all(16),
@@ -45,7 +53,7 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    products![index].title,
+                    products!.title,
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -53,12 +61,12 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    products![index].description,
+                    products!.description,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Price: \$${products![index].price}',
+                    'Price: \$${products!.price}',
                     style: const TextStyle(fontSize: 18, color: Colors.green),
                   ),
                 ],
