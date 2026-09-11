@@ -8,5 +8,5 @@
 
 ## TO DO LIST
 
-[] Product List Screen 
- [] Title, Thumbnail, Price
+-[] Product List Screen 
+ -[] Title, Thumbnail, Price
