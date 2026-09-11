@@ -1,4 +1,6 @@
-import 'package:catalog_app/views/home_page.dart';
+
+//import 'package:catalog_app/views/home_page.dart';
+import 'package:catalog_app/views/product_details_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Homepage(),
+      home: const ProductDetailScreen(),
     );
   }
 }
