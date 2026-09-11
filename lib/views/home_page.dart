@@ -33,11 +33,15 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Homepage')),
-      body: ListView.builder(
-        itemCount: products?.length,
-        itemBuilder: (context, index) {
-          return Container();
-        },
+      body: Visibility(
+        visible: isLoaded,
+        child: ListView.builder(
+          itemCount: products?.length,
+          itemBuilder: (context, index) {
+            return Container();
+          },
+        ),
+        replacement: const CircularProgressIndicator(),
       ),
     );
   }
