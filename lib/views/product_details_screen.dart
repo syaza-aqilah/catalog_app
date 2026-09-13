@@ -12,22 +12,22 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailScreen> {
-  Product? products;
+  late Future<Product> productFuture;
   var isLoaded = false;
   String errorMessage = '';
 
   @override
   void initState() {
     super.initState();
-    //fetch data from API
+    // Fetch product data from the API using the provided id.
     getData();
   }
 
   getData() async {
     try {
-      var data = await ProductDetailService().getProduct(products!.id);
+      var data = await ProductDetailService().getProduct(1);
       setState(() {
-        products = data; // Store the single product
+        productFuture = data as Future<Product>; // Store the single product
         isLoaded = true;
       });
     } catch (e) {
@@ -41,11 +41,12 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Product Details')),
+      appBar: AppBar(title: Text('Product Details')),
       body: Visibility(
         visible: isLoaded,
         replacement: const Center(child: CircularProgressIndicator()),
         child: ListView.builder(
+          itemCount: 1, // Only one product to display
           itemBuilder: (context, index) {
             return Container(
               padding: const EdgeInsets.all(16),
@@ -59,13 +60,15 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
                       color: Colors.blueAccent,
                       borderRadius: BorderRadius.circular(12),
                       image: DecorationImage(
-                        image: NetworkImage(products!.images[0]),
+                        image: NetworkImage(
+                          (productFuture as Product).images[0],
+                        ),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Text(
-                    products!.title,
+                    (productFuture as Product).title,
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -73,12 +76,12 @@ class _ProductDetailsScreenState extends State<ProductDetailScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    products!.description,
+                    (productFuture as Product).description,
                     style: const TextStyle(fontSize: 16),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Price: \$${products!.price}',
+                    'Price: \$${(productFuture as Product).price}',
                     style: const TextStyle(fontSize: 18, color: Colors.green),
                   ),
                 ],

@@ -45,7 +45,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Homepage')),
+      appBar: AppBar(title: const Text('Homepage'), centerTitle: true),
       body: Visibility(
         visible: isLoaded,
         replacement: const Center(child: CircularProgressIndicator()),
@@ -114,7 +114,8 @@ class _HomepageState extends State<Homepage> {
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
-                              ),)
+                              ),
+                            ),
                           ],
                         ),
                       ),

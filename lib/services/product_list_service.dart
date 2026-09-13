@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class ProductListService {
   Future<List<Product>> getProducts() async {
     var client = http.Client();
-    var uri = Uri.parse('https://dummyjson.com/products?limit=20&skip=0');
+    var uri = Uri.parse('https://dummyjson.com/products');
     var response = await client.get(uri);
 
     if (response.statusCode == 200) {
